@@ -1,4 +1,4 @@
 # pianista-challenge
 Frontend project making use of Pianista API
 
-Built in React with TailwindCSS
+Built in React + TailwindCSS
