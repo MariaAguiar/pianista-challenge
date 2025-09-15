@@ -13,7 +13,7 @@ export function exportToText(preset, params) {
         case "nqueens":
         return NQueensToMzn(params);
         default:
-        return "No preset selected";
+        return "";
     }
 }
 
@@ -28,7 +28,7 @@ export function exportDomain(preset) {
         case "nqueens":
         return ;
         default:
-        return "No preset selected";
+        return "";
     }
 }
 

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import UIPresets from "./UIPreset";
-import { exportDomain } from "../utils/PresetConversors";
+import MznPreset from "./MznPreset";
+import PddlPresets from "./PddlPreset";
 
 export default function ModeBinder() {
     const [color, setColor] = useState("gray");
@@ -21,16 +21,12 @@ export default function ModeBinder() {
         fileName: ""
     });
 
-    const [uiPresetState, setUiPresetState] = useState("");
-    const [presetType, setPresetType] = useState({
-        type: "",
-        preset: ""
-    });
+    const [mznPreset, setMznPreset] = useState("none");
+    const [PddlPreset, setPddlPreset] = useState("none");
 
     const tabs = [
         { name: "Pddl", key: "pddl" },
         { name: "Minizinc", key: "minizinc" },
-        { name: "Presets", key: "uiBuilder" },
     ];
 
     const handleFileUpload = (event, type) => {
@@ -60,19 +56,6 @@ export default function ModeBinder() {
         reader.readAsText(file);
     };
 
-    const rewriteAndGoToBinder = () => {
-        if (presetType.type === "" || uiPresetState === "") return;
-        if (presetType.type === "pddl") {
-            setPddlState({ ...pddlState, domainText: exportDomain(presetType.preset), problemText: uiPresetState });
-            setActiveTab("pddl");
-        }
-        else
-        {
-            setMinizincState({ ...minizincState, content: uiPresetState });
-            setActiveTab("minizinc");
-        }
-    };
-
     return (
     <form onSubmit={(e) => { e.preventDefault(); alert("Coming Soon!") }} className="w-full place-items-center">
         <header className="place-items-center text-center">
@@ -93,26 +76,25 @@ export default function ModeBinder() {
             {activeTab === "pddl" && (
             <div className="w-full flex flex-col place-items-center">
                 <div className="w-[95%]">
+                    <PddlPresets output={pddlState} setOutput={setPddlState} type={PddlPreset} setType={setPddlPreset} />
                     <div className="w-full flex flex-row flex-wrap place-items-center justify-between">
                         <input type="file" accept=".pddl" onChange={(e) => handleFileUpload(e, "pddlDomain")} />
                         <label className={`text-[${color}]`}>.pddl</label>
                     </div>
-                    <textarea required className="w-full border rounded min-h-10 max-h-30"
+                    <textarea required className="w-full border rounded min-h-[300px]"
                         placeholder="Goals and Contraints Info"
                         value={pddlState.domainText}
                         onChange={(e) => setPddlState({ ...pddlState, domainText: e.target.value })}
-                        rows={4}
                     />
 
                     <div className="pt-5 w-full flex flex-row flex-wrap place-items-center justify-between">
                         <input type="file" accept=".pddl" onChange={(e) => handleFileUpload(e, "pddlProblem")} />
                         <label className={`text-[${color2}]`}>.pddl</label>
                     </div>
-                    <textarea required className="w-full border rounded min-h-10 max-h-30"
+                    <textarea required className="w-full border rounded min-h-[300px]"
                         placeholder="Scenario Info"
                         value={pddlState.problemText}
                         onChange={(e) => setPddlState({ ...pddlState, problemText: e.target.value })}
-                        rows={4}
                     />
                 </div>
             </div>
@@ -121,38 +103,23 @@ export default function ModeBinder() {
             {activeTab === "minizinc" && (
             <div className="w-full flex flex-col place-items-center">
                 <div className="w-[95%]">
+                    <MznPreset output={minizincState} setOutput={setMinizincState} type={mznPreset} setType={setMznPreset} />
                     <div className="w-full flex flex-row flex-wrap place-items-center justify-between">
                         <input type="file" accept=".mzn" onChange={(e) => handleFileUpload(e, "minizinc")} />
                         <label className={`text-[${color3}]`}>.mzn</label>
                     </div>
-                    <textarea required className="w-full border rounded min-h-10 max-h-65"
+                    <textarea required className="w-full border rounded min-h-[300px]"
                         placeholder="Scenario, Goals and Constraints Info"
                         value={minizincState.content}
                         onChange={(e) => setMinizincState({ ...minizincState, content: e.target.value })}
-                        rows={8}
                     />
                 </div>
             </div> 
             )}
-
-            {activeTab === "uiBuilder" && (
-            <div className="w-full flex flex-col place-items-center">
-                <div className="w-[95%] h-[95%]">
-                    <UIPresets output={uiPresetState} setOutput={setUiPresetState} type={presetType} setType={setPresetType} />
-                </div>
-            </div>
-            )}
         </main>
-        {(activeTab === "pddl" || activeTab === "minizinc") && (
         <div>
             <button className="mb-10" type="submit">Launch</button>
         </div>
-        )}
-        {activeTab === "uiBuilder" && (
-        <div className="flex flex-col place-items-center">
-            <button className="mb-10" type="button" onClick={rewriteAndGoToBinder}>Convert and Validate</button>
-        </div>
-        )}
     </form>
     );
 }
