@@ -88,8 +88,8 @@ export default function PddlPresets({ output, setOutput, type, setType }) {
         <article className="m-8 flex flex-col text-right">
             <div className="w-full flex flex-row">
                 <label className="block w-1/2">Nr of Blocks |</label>
-                <input className="min-w-[40px] text-center border rounded-sm border-[lightblue]" type="number" min="3" max="200" value={params.blocks}
-                onChange={e => { if(e.target.value >= 3 && e.target.value <= 200) setParams({...params, blocks: +e.target.value}) }}/>
+                <input className="min-w-[40px] text-center border rounded-sm border-[lightblue]" type="number" min="2" max="200" value={params.blocks}
+                onChange={e => { if(e.target.value >= 2 && e.target.value <= 200) setParams({...params, blocks: +e.target.value}) }}/>
             </div>
         </article>
       )}
