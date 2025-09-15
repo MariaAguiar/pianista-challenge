@@ -45,7 +45,7 @@ export default function PddlPresets({ output, setOutput, type, setType }) {
           <li
             key={preset.key}
             onClick={() => presetSelector(preset.key)}
-            className={`min-w-25 py-2 px-3 mx-1 rounded-lg border cursor-pointer border-[lightblue]
+            className={`min-w-25 py-2 px-3 mx-1 rounded-lg border cursor-pointer dark:border-[darkcyan] border-[lightblue]
               ${activePreset === preset.key ? "bg-blue-50" : ""}`}
           >
             {preset.name}
@@ -58,27 +58,27 @@ export default function PddlPresets({ output, setOutput, type, setType }) {
         <article className="py-4 flex flex-col text-right">
             <div className="w-full flex flex-row">
                 <label className="block w-1/2">Nr of Trucks | </label>
-                <input className="w-16 text-center border rounded-sm border-[lightblue] mb-1" type="number" min="1" max="200" value={params.trucks} 
+                <input className="w-16 text-center border rounded-sm dark:border-[darkcyan] border-[lightblue] mb-1" type="number" min="1" max="200" value={params.trucks} 
                 onChange={e => { if(e.target.value >= 1 && e.target.value <= 200) setParams({...params, trucks: +e.target.value}) }}/>
             </div>
             <div className="w-full flex flex-row">
                 <label className="block w-1/2">Nr of Planes | </label>
-                <input className="w-16 text-center border rounded-sm border-[lightblue] mb-1" type="number" min="1" max="200" value={params.planes} 
+                <input className="w-16 text-center border rounded-sm dark:border-[darkcyan] border-[lightblue] mb-1" type="number" min="1" max="200" value={params.planes} 
                 onChange={e => { if(e.target.value >= 1 && e.target.value <= 200) setParams({...params, planes: +e.target.value}) }}/>
             </div>
             <div className="w-full flex flex-row">
                 <label className="block w-1/2">Nr of Cities | </label>
-                <input className="w-16 text-center border rounded-sm border-[lightblue] mb-1" type="number" min="2" max="200" value={params.cities} 
+                <input className="w-16 text-center border rounded-sm dark:border-[darkcyan] border-[lightblue] mb-1" type="number" min="2" max="200" value={params.cities} 
                 onChange={e => { if(e.target.value >= 1 && e.target.value <= 200) setParams({...params, cities: +e.target.value}) }}/>
             </div>
             <div className="w-full flex flex-row">
                 <label className="block w-1/2">Nr of Airports | </label>
-                <input className="w-16 text-center border rounded-sm border-[lightblue] mb-1" type="number" min="2" max="200" value={params.airports} 
+                <input className="w-16 text-center border rounded-sm dark:border-[darkcyan] border-[lightblue] mb-1" type="number" min="2" max="200" value={params.airports} 
                 onChange={e => { if(e.target.value >= 1 && e.target.value <= 200) setParams({...params, airports: +e.target.value}) }}/>
             </div>
             <div className="w-full flex flex-row">
                 <label className="block w-1/2">Nr of Packages | </label>
-                <input className="w-16 text-center border rounded-sm border-[lightblue] mb-1" type="number" min="1" max="200" value={params.packages}
+                <input className="w-16 text-center border rounded-sm dark:border-[darkcyan] border-[lightblue] mb-1" type="number" min="1" max="200" value={params.packages}
                 onChange={e => { if(e.target.value >= 1 && e.target.value <= 200)  setParams({...params, packages: +e.target.value}) }}/>
             </div>
         </article>
@@ -88,7 +88,7 @@ export default function PddlPresets({ output, setOutput, type, setType }) {
         <article className="py-4 flex flex-col text-right">
             <div className="w-full flex flex-row">
                 <label className="block w-1/2">Nr of Blocks |</label>
-                <input className="w-16 text-center border rounded-sm border-[lightblue]" type="number" min="2" max="200" value={params.blocks}
+                <input className="w-16 text-center border rounded-sm dark:border-[darkcyan] border-[lightblue]" type="number" min="2" max="200" value={params.blocks}
                 onChange={e => { if(e.target.value >= 2 && e.target.value <= 200) setParams({...params, blocks: +e.target.value}) }}/>
             </div>
         </article>
@@ -98,7 +98,7 @@ export default function PddlPresets({ output, setOutput, type, setType }) {
         <article className="py-4 flex flex-col text-right">
             <div className="w-full flex flex-row">
                 <label className="block w-1/2">Nr of Switches |</label>
-                <input className="w-16 text-center border rounded-sm border-[lightblue]" type="number" min="2" max="200" value={params.switches}
+                <input className="w-16 text-center border rounded-sm dark:border-[darkcyan] border-[lightblue]" type="number" min="2" max="200" value={params.switches}
                 onChange={e => { if(e.target.value >= 2 && e.target.value <= 200) setParams({...params, switches: +e.target.value}) }}/>
             </div>
         </article>
@@ -106,7 +106,7 @@ export default function PddlPresets({ output, setOutput, type, setType }) {
       
       {preset !== "none" && (
       <div className="w-full flex flex-col place-items-center">
-        <button type="button" className="min-w-[15%] mt-2 py-1 px-2 rounded-lg border border-[lightblue] cursor-pointer" onClick={updateTextarea}>Update</button>
+        <button type="button" className="min-w-[15%] mt-2 py-1 px-2 rounded-lg border dark:border-[darkcyan] border-[lightblue] cursor-pointer" onClick={updateTextarea}>Update</button>
       </div>
       )}
     </div>
