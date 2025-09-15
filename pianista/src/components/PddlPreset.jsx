@@ -55,7 +55,7 @@ export default function PddlPresets({ output, setOutput, type, setType }) {
       </header>
 
       {preset === "logistics" && (
-        <article className="p-4 flex flex-col text-right">
+        <article className="py-4 flex flex-col text-right">
             <div className="w-full flex flex-row">
                 <label className="block w-1/2">Nr of Trucks | </label>
                 <input className="w-16 text-center border rounded-sm border-[lightblue] mb-1" type="number" min="1" max="200" value={params.trucks} 
@@ -85,20 +85,20 @@ export default function PddlPresets({ output, setOutput, type, setType }) {
       )}
 
       {preset === "blocks" && (
-        <article className="m-8 flex flex-col text-right">
+        <article className="py-4 flex flex-col text-right">
             <div className="w-full flex flex-row">
                 <label className="block w-1/2">Nr of Blocks |</label>
-                <input className="min-w-[40px] text-center border rounded-sm border-[lightblue]" type="number" min="2" max="200" value={params.blocks}
+                <input className="w-16 text-center border rounded-sm border-[lightblue]" type="number" min="2" max="200" value={params.blocks}
                 onChange={e => { if(e.target.value >= 2 && e.target.value <= 200) setParams({...params, blocks: +e.target.value}) }}/>
             </div>
         </article>
       )}
 
       {preset === "switches" && (
-        <article className="m-8 flex flex-col text-right">
+        <article className="py-4 flex flex-col text-right">
             <div className="w-full flex flex-row">
                 <label className="block w-1/2">Nr of Switches |</label>
-                <input className="w-10 text-center border rounded-sm border-[lightblue]" type="number" min="2" max="200" value={params.switches}
+                <input className="w-16 text-center border rounded-sm border-[lightblue]" type="number" min="2" max="200" value={params.switches}
                 onChange={e => { if(e.target.value >= 2 && e.target.value <= 200) setParams({...params, switches: +e.target.value}) }}/>
             </div>
         </article>

@@ -47,10 +47,10 @@ export default function MznPresets({ output, setOutput, type, setType }) {
       </header>
 
       {preset === "nqueens" && (
-        <article className="m-[10px] flex flex-col text-right">
+        <article className="py-4 flex flex-col text-right">
             <div className="w-full flex flex-row">
                 <label className="block w-1/2">Board Size |</label>
-                <input className="w-10 text-center border rounded-sm border-[lightblue]" type="number" min="1" max="200" value={params.boardSize}
+                <input className="w-16 text-center border rounded-sm border-[lightblue]" type="number" min="1" max="200" value={params.boardSize}
                 onChange={e => { if(e.target.value >= 1 && e.target.value <= 200) setParams({...params, boardSize: +e.target.value}) }}/>
             </div>
         </article>
