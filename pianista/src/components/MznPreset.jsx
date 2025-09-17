@@ -38,7 +38,7 @@ export default function MznPresets({ output, setOutput, type, setType }) {
             key={preset.key}
             onClick={() => presetSelector(preset.key)}
             className={`min-w-25 py-2 px-3 mx-1 rounded-lg border cursor-pointer dark:border-[darkcyan] border-[lightblue]
-              ${activePreset === preset.key ? "dark:bg-teal-600 bg-blue-50" : ""}`}
+              ${activePreset === preset.key ? "dark:bg-teal-700 bg-blue-50" : ""}`}
           >
             {preset.name}
           </li>
