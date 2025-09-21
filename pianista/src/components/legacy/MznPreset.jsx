@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { exportToText } from "../utils/PresetConversors";
+import { exportToText } from "../../utils/PresetConversors";
 
 export default function MznPresets({ output, setOutput, type, setType }) {
   const [preset, setPreset] = useState(type);
