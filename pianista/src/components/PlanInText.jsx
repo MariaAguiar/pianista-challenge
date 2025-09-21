@@ -17,7 +17,7 @@ export default function PlanInText({ tab, contents= "", result }) {
 
     const [minizincState, setMinizincState] = useState({
         model_str: contents.mznContent,
-        model_params: ""
+        model_params: {}
     });
 
     const [naturalState, setNaturalState] = useState({
