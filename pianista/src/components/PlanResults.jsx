@@ -1,8 +1,8 @@
 
-export default function PlanResults() {
+export default function PlanResults( { result }) {
     return (
         <div>
-            Plan Results Page
+            <p>{result.plan ? result.plan : result.detail}</p>
         </div>
     );
 }

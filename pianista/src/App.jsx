@@ -19,6 +19,7 @@ export default function App() {
         problemText: "",
 		mznContent: ""
     });
+	const [resultPlan, setResultPlan] = useState("");
 
 	return (
 		<div className="w-screen h-screen grid grid-cols-12 gap-4
@@ -38,10 +39,13 @@ export default function App() {
 				<PlanInFiles />
 			)}
 			{activeTab === "Plan Text" && (
-				<PlanInText contents={contentState} />
+				<PlanInText tab={setActiveTab} contents={contentState} result={setResultPlan} />
 			)}
 			{activeTab === "Presets" && (
 				<PlanInPreset tab={setActiveTab} contents={contentState} setContent={setContentState} />
+			)}
+			{activeTab === "Results" && (
+				<PlanResults result={resultPlan} />
 			)}
 		</div>
 	);

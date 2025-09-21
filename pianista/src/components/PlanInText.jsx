@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
+import { getPddl, getMzn, solvePddl, solveMzn } from "../utils/resultsViewer";
 
-export default function PlanInText({ contents= "" }) {
+export default function PlanInText({ tab, contents= "", result }) {
     const [activeTab, setActiveTab] = useState(contents.type? contents.type : "pddl");
 
     const tabs = [
@@ -10,15 +11,13 @@ export default function PlanInText({ contents= "" }) {
     ];
 
     const [pddlState, setPddlState] = useState({
-        domainText: contents.domainText,
-        problemText: contents.problemText,
-        domainFileName: "",
-        problemFileName: ""
+        domain: contents.domainText,
+        problem: contents.problemText,
     });
 
     const [minizincState, setMinizincState] = useState({
-        content: contents.mznContent,
-        fileName: ""
+        model_str: contents.mznContent,
+        model_params: ""
     });
 
     const [naturalState, setNaturalState] = useState({
@@ -32,6 +31,25 @@ export default function PlanInText({ contents= "" }) {
     useEffect(() => {
         bottomRef.current?.scrollIntoView({ behavior: "smooth" });
     }, []);
+
+    async function solve(type) {
+        try {
+            if (type === "pddl") {
+                const resp = await solvePddl(pddlState);
+                const res = await getPddl(resp);
+                result(res);
+            }
+            else if (type === "minizinc") {
+                const resp = await solveMzn(minizincState);
+                const res = await getMzn(resp);
+                result(res);
+            }
+            tab("Results");
+        }
+        catch (error) {
+            console.error("Error during solving process:", error);
+        }
+    }
 
     return (
         <section className="portrait:h-screen portrait:w-screen bg-white
@@ -61,13 +79,13 @@ export default function PlanInText({ contents= "" }) {
                 <div className="w-[95%] max-h-[320px] overflow-y-auto">
                     <textarea required className="w-full border rounded min-h-[150px]"
                         placeholder="Goals and Contraints Info"
-                        value={pddlState.domainText}
-                        onChange={(e) => setPddlState({ ...pddlState, domainText: e.target.value })}
+                        value={pddlState.domain}
+                        onChange={(e) => setPddlState({ ...pddlState, domain: e.target.value })}
                     />
                     <textarea required className="w-full border rounded min-h-[150px]"
                         placeholder="Scenario Info"
-                        value={pddlState.problemText}
-                        onChange={(e) => setPddlState({ ...pddlState, problemText: e.target.value })}
+                        value={pddlState.problem}
+                        onChange={(e) => setPddlState({ ...pddlState, problem: e.target.value })}
                     />
                 </div>
             </div>
@@ -78,8 +96,8 @@ export default function PlanInText({ contents= "" }) {
                 <div className="w-[95%] max-h-[320px] overflow-y-auto">
                     <textarea required className="w-full border rounded min-h-[300px]"
                         placeholder="Scenario, Goals and Constraints Info"
-                        value={minizincState.content}
-                        onChange={(e) => setMinizincState({ ...minizincState, content: e.target.value })}
+                        value={minizincState.model_str}
+                        onChange={(e) => setMinizincState({ ...minizincState, model_str: e.target.value })}
                     />
                 </div>
             </div> 
@@ -100,6 +118,7 @@ Please describe your plan's main scenario, goals and constraints"
             </div>
             <button className="row-start-11 row-span-1 col-start-4 col-span-1
             portrait:col-span-2 portrait:col-start-6 rounded"
+            onClick={() => { if (activeTab === "pddl" || activeTab === "minizinc") solve(activeTab); }}
             type="button">Solve</button>
         </section>
     );
