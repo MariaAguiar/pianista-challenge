@@ -14,6 +14,19 @@ export async function solvePddl(inputData) {
     }
 }
 
+export async function getPddl(data) {
+    try {
+        const getPlan = await fetch(`/api/getPddl?id=${encodeURIComponent(data)}`);
+        const planData = await getPlan.json();
+        console.log(planData);
+        return planData;
+    } catch (error) {
+        console.error("Error fetching PDDL plan:", error);
+    }
+}
+
+
+
 export async function solveMzn(inputData) {
     try {
         const res = await fetch("/api/solveMzn", {
@@ -29,17 +42,6 @@ export async function solveMzn(inputData) {
     }
 }
 
-export async function getPddl(data) {
-    try {
-        const getPlan = await fetch(`/api/getPddl?id=${encodeURIComponent(data)}`);
-        const planData = await getPlan.json();
-        console.log(planData);
-        return planData;
-    } catch (error) {
-        console.error("Error fetching PDDL plan:", error);
-    }
-}
-
 export async function getMzn(data) {
     try {
         const getPlan = await fetch(`/api/getMzn?id=${encodeURIComponent(data)}`);
@@ -47,6 +49,6 @@ export async function getMzn(data) {
         console.log(planData);
         return planData;
     } catch (error) {
-        console.error("Error fetching PDDL plan:", error);
+        console.error("Error fetching Mzn plan:", error);
     }
 }
