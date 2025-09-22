@@ -7,7 +7,7 @@ export default function Gantt( { plan }) {
             {plan.map((task, row) => (
             <div
               key={row}
-              className={`grid items-center mb-2 grid-rows-${plan.length} grid-cols-${plan.length} gap-0`}
+              className={`grid items-center mb-2 grid-cols-${plan.length}`}
               style={{ gridTemplateColumns: `200px repeat(${plan.length}, 60px)` }}
             >
               <div className="pr-2">{task}</div>
