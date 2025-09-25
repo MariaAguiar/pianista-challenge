@@ -17,7 +17,7 @@ export default function PlanResults( { result }) {
     }
 
     return (
-        <section className="portrait:h-screen portrait:w-screen bg-white overflow-auto
+        <section className="portrait:h-screen portrait:w-screen bg-white dark:bg-[#242424] overflow-auto
         grid landscape:grid-rows-subgrid landscape:grid-cols-subgrid gap-4
         landscape:col-start-7 landscape:col-span-5
         landscape:row-start-1 landscape:row-span-12

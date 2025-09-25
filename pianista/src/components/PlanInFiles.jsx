@@ -21,7 +21,7 @@ export default function PlanInFiles() {
     }, []);
 
     return (
-        <section className="portrait:h-screen portrait:w-screen bg-white
+        <section className="portrait:h-screen portrait:w-screen bg-white dark:bg-[#242424]
         grid landscape:grid-rows-subgrid landscape:grid-cols-subgrid gap-4
         landscape:col-start-7 landscape:col-span-5
         landscape:row-start-1 landscape:row-span-12

@@ -65,7 +65,7 @@ export default function ModeBinder() {
                     key={tab.key}
                     onClick={() => setActiveTab(tab.key)}
                     className={`min-w-[100px] py-2 px-3 mx-1 rounded-t-lg border border-b-transparent border-[lightgray] cursor-pointer
-                        ${activeTab === tab.key ? "dark:bg-teal-700 bg-blue-50" : ""}`}
+                        ${activeTab === tab.key ? "dark:bg-teal-800 bg-blue-50" : ""}`}
                     >
                     {tab.name}
                     </li>

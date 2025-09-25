@@ -52,7 +52,7 @@ export default function PlanInText({ tab, contents= "", result }) {
     }
 
     return (
-        <section className="portrait:h-screen portrait:w-screen bg-white
+        <section className="portrait:h-screen portrait:w-screen bg-white dark:bg-[#242424]
          grid landscape:grid-rows-subgrid landscape:grid-cols-subgrid gap-4
         landscape:col-start-6 landscape:col-span-7
         landscape:row-start-1 landscape:row-span-12
@@ -65,7 +65,7 @@ export default function PlanInText({ tab, contents= "", result }) {
                         key={tab.key}
                         onClick={() => setActiveTab(tab.key)}
                         className={`min-w-[100px] py-2 px-3 mx-1 rounded-lg border border-[lightgray] cursor-pointer
-                            ${activeTab === tab.key ? "dark:bg-teal-700 bg-blue-50" : ""}`}
+                            ${activeTab === tab.key ? "dark:bg-teal-800 bg-blue-50" : ""}`}
                         >
                         {tab.name}
                         </li>

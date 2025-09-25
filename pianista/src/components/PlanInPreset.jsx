@@ -34,7 +34,7 @@ export default function PlanInPreset({ tab, contents, setContent }) {
     };
 
     return (
-        <section className="portrait:h-screen portrait:w-screen bg-white overflow-y-clip
+        <section className="portrait:h-screen portrait:w-screen bg-white dark:bg-[#242424] overflow-y-clip
         grid landscape:grid-rows-subgrid landscape:grid-cols-subgrid gap-4
         landscape:col-start-7 landscape:col-span-5
         landscape:row-start-1 landscape:row-span-12
@@ -54,27 +54,27 @@ export default function PlanInPreset({ tab, contents, setContent }) {
                     duration-300 group-focus-within:max-h-[250px] group-focus-within:py-4 flex flex-col text-right">
                         <div className="w-full flex flex-row overflow-hidden">
                             <label className="block w-1/2">Nr of Trucks | </label>
-                            <input className="w-16 text-center border rounded-sm dark:border-[darkcyan] border-[lightblue] mb-1" type="number" min="1" max="200" value={params.trucks} 
+                            <input className="w-16 text-center border rounded-sm dark:border-[white] border-[lightgray] mb-1" type="number" min="1" max="200" value={params.trucks} 
                             onChange={e => { if(e.target.value >= 1 && e.target.value <= 200) setParams({...params, trucks: +e.target.value}) }}/>
                         </div>
                         <div className="w-full flex flex-row overflow-hidden">
                             <label className="block w-1/2">Nr of Planes | </label>
-                            <input className="w-16 text-center border rounded-sm dark:border-[darkcyan] border-[lightblue] mb-1" type="number" min="1" max="200" value={params.planes} 
+                            <input className="w-16 text-center border rounded-sm dark:border-[white] border-[lightgray] mb-1" type="number" min="1" max="200" value={params.planes} 
                             onChange={e => { if(e.target.value >= 1 && e.target.value <= 200) setParams({...params, planes: +e.target.value}) }}/>
                         </div>
                         <div className="w-full flex flex-row overflow-hidden">
                             <label className="block w-1/2">Nr of Cities | </label>
-                            <input className="w-16 text-center border rounded-sm dark:border-[darkcyan] border-[lightblue] mb-1" type="number" min="2" max="200" value={params.cities} 
+                            <input className="w-16 text-center border rounded-sm dark:border-[white] border-[lightgray] mb-1" type="number" min="2" max="200" value={params.cities} 
                             onChange={e => { if(e.target.value >= 1 && e.target.value <= 200) setParams({...params, cities: +e.target.value}) }}/>
                         </div>
                         <div className="w-full flex flex-row overflow-hidden">
                             <label className="block w-1/2">Nr of Airports | </label>
-                            <input className="w-16 text-center border rounded-sm dark:border-[darkcyan] border-[lightblue] mb-1" type="number" min="2" max="200" value={params.airports} 
+                            <input className="w-16 text-center border rounded-sm dark:border-[white] border-[lightgray] mb-1" type="number" min="2" max="200" value={params.airports} 
                             onChange={e => { if(e.target.value >= 1 && e.target.value <= 200) setParams({...params, airports: +e.target.value}) }}/>
                         </div>
                         <div className="w-full flex flex-row overflow-hidden">
                             <label className="block w-1/2">Nr of Packages | </label>
-                            <input className="w-16 text-center border rounded-sm dark:border-[darkcyan] border-[lightblue] mb-1" type="number" min="1" max="200" value={params.packages}
+                            <input className="w-16 text-center border rounded-sm dark:border-[white] border-[lightgray] mb-1" type="number" min="1" max="200" value={params.packages}
                             onChange={e => { if(e.target.value >= 1 && e.target.value <= 200)  setParams({...params, packages: +e.target.value}) }}/>
                         </div>
                     </article>
@@ -96,7 +96,7 @@ export default function PlanInPreset({ tab, contents, setContent }) {
                     duration-300 group-focus-within:max-h-[70px] group-focus-within:py-4 flex flex-col text-right">
                         <div className="w-full flex flex-row overflow-hidden">
                             <label className="block w-1/2">Nr of Blocks |</label>
-                            <input className="w-16 text-center border rounded-sm dark:border-[darkcyan] border-[lightblue]" type="number" min="2" max="200" value={params.blocks}
+                            <input className="w-16 text-center border rounded-sm dark:border-[white] border-[lightgray]" type="number" min="2" max="200" value={params.blocks}
                             onChange={e => { if(e.target.value >= 2 && e.target.value <= 200) setParams({...params, blocks: +e.target.value}) }}/>
                         </div>
                     </article>
@@ -118,7 +118,7 @@ export default function PlanInPreset({ tab, contents, setContent }) {
                     duration-300 group-focus-within:max-h-[70px] group-focus-within:py-4 flex flex-col text-right">
                         <div className="w-full flex flex-row overflow-hidden">
                             <label className="block w-1/2">Board Size |</label>
-                            <input className="w-16 text-center border rounded-sm dark:border-[darkcyan] border-[lightblue]" type="number" min="1" max="200" value={params.boardSize}
+                            <input className="w-16 text-center border rounded-sm dark:border-[white] border-[lightgray]" type="number" min="1" max="200" value={params.boardSize}
                             onChange={e => { if(e.target.value >= 1 && e.target.value <= 200) setParams({...params, boardSize: +e.target.value}) }}/>
                         </div>
                     </article>
@@ -140,7 +140,7 @@ export default function PlanInPreset({ tab, contents, setContent }) {
                     duration-300 group-focus-within:max-h-[70px] group-focus-within:py-4 flex flex-col text-right">
                         <div className="w-full flex flex-row overflow-hidden">
                             <label className="block w-1/2">Nr of Switches |</label>
-                            <input className="w-16 text-center border rounded-sm dark:border-[darkcyan] border-[lightblue]" type="number" min="2" max="200" value={params.switches}
+                            <input className="w-16 text-center border rounded-sm dark:border-[white] border-[lightgray]" type="number" min="2" max="200" value={params.switches}
                             onChange={e => { if(e.target.value >= 2 && e.target.value <= 200) setParams({...params, switches: +e.target.value}) }}/>
                         </div>
                     </article>

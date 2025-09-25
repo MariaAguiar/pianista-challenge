@@ -29,7 +29,7 @@ export default function App() {
 			portrait:col-start-1 portrait:col-span-12 portrait:row-start-1 portrait:row-span-8
 			portrait:bg-linear-to-b portrait:border-b portrait:border-b-3
 			landscape:border-r landscape:border-r-3
-			bg-linear-to-r from-white to-[#F6F6F5]">
+			bg-linear-to-r from-white to-[#F6F6F5] dark:from-[#242424] dark:to-[#333333]">
 			</div>
 			<Breadcrumbs name={activeTab} tab={setActiveTab} />
 			<RecordsPanel />

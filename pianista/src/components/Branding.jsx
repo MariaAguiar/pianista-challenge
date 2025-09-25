@@ -16,7 +16,7 @@ export default function Branding() {
         portrait:col-span-8 portrait:col-start-3
         portrait:sm:col-span-6 portrait:sm:col-start-4
         portrait:row-span-2 portrait:row-start-5 flex flex-row place-items-center">
-            <Logo />
+            <Logo className="fill-[#010101] dark:fill-white" />
         </div>
 
         <p className=' text-right px-[5%]
