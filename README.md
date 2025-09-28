@@ -1,5 +1,6 @@
 # pianista-challenge
 Frontend project making use of Pianista API
+
 A React + Tailwind web app for creating, solving, and managing planning problems using **PDDL** and **MiniZinc**.
 Features file-based input, use ready presets, solving options selection and persistent record management.
 
