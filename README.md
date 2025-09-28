@@ -15,7 +15,7 @@ Features file-based input, use ready presets, solving options selection and pres
 
 * **Parameters component**
 
-  * Select one of the available key-value pair
+  * Select one of the available key-value pairs
 
 * **Records management**
 
@@ -37,22 +37,6 @@ Features file-based input, use ready presets, solving options selection and pres
 
 ---
 
-## ⚙️ Installation & Setup
-
-```bash
-# Clone the repo
-git clone <your-repo-url>
-cd <your-repo-folder>
-
-# Install dependencies
-npm install
-
-# Run in development
-npm run dev
-
-# Build for production
-npm run build
-```
 
 ---
 
