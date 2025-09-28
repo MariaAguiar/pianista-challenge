@@ -1,7 +1,7 @@
 # pianista-challenge
 Frontend project making use of Pianista API
 A React + Tailwind web app for creating, solving, and managing planning problems using **PDDL** and **MiniZinc**.
-Features file-based input, use ready presets, solving options selection and presistent record management.
+Features file-based input, use ready presets, solving options selection and persistent record management.
 
 ---
 
@@ -53,7 +53,7 @@ PIANISTA_API_KEY=
 ## 🖥️ Usage
 
 1. **Select a flow** (Files, Text, or Preset).
-2. **Select file type and its available options** (PDDL, MiniZinc, or Prompt).
+2. **Select file type and respective options** (PDDL, MiniZinc, or Prompt).
 5. Press **Solve**.
 6. Open the **Records panel**:
    * View input
