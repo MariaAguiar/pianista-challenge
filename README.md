@@ -69,7 +69,7 @@ PIANISTA_API_KEY=
 
 ## 🎥 Demo
 
-[Insert link to demo video or screenshots]
+[In preparation]
 
 ---
 
