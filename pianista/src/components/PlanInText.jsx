@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
-import { getPddl, getMzn, solvePddl, solveMzn } from "../utils/resultsViewer";
+import Parameters from "./Parameters";
 
-export default function PlanInText({ tab, contents= "", result }) {
+export default function PlanInText({ toSolve, setToSolve, contents= "", setContent,
+    params, setParams, pddlOptions, mznOptions }) {
     const [activeTab, setActiveTab] = useState(contents.type? contents.type : "pddl");
 
     const tabs = [
@@ -16,13 +17,11 @@ export default function PlanInText({ tab, contents= "", result }) {
     });
 
     const [minizincState, setMinizincState] = useState({
-        model_str: contents.mznContent,
-        model_params: {}
+        model_str: contents.mznContent
     });
 
     const [naturalState, setNaturalState] = useState({
-        content: "",
-        fileName: ""
+        content: contents.mznContent
     });
 
     const containerRef = useRef(null);
@@ -32,28 +31,33 @@ export default function PlanInText({ tab, contents= "", result }) {
         bottomRef.current?.scrollIntoView({ behavior: "smooth" });
     }, []);
 
-    async function solve(type) {
-        try {
-            if (type === "pddl") {
-                const resp = await solvePddl(pddlState);
-                const res = await getPddl(resp);
-                result(res);
-            }
-            else if (type === "minizinc") {
-                const resp = await solveMzn(minizincState);
-                const res = await getMzn(resp);
-                result(res);
-            }
-            tab("Results");
+    const fillContent = () => {
+        if (activeTab === "pddl") {
+            setContent({
+                type: "pddl",
+                domainText: pddlState.domain,
+                problemText: pddlState.problem,
+                mznContent: "",
+                params: params,
+            });
         }
-        catch (error) {
-            console.error("Error during solving process:", error);
+        else if (activeTab === "minizinc") {
+            setContent({
+                type: "minizinc",
+                domainText: "",
+                problemText: "",
+                mznContent: minizincState.model_str,
+                params: params,
+            });
         }
+        else
+            return ;
+        setToSolve(true);
     }
 
     return (
         <section className="portrait:h-screen portrait:w-screen bg-white dark:bg-[#242424]
-         grid landscape:grid-rows-subgrid landscape:grid-cols-subgrid gap-4
+        grid landscape:grid-rows-subgrid landscape:grid-cols-subgrid gap-4
         landscape:col-start-6 landscape:col-span-7
         landscape:row-start-1 landscape:row-span-12
         portrait:grid-cols-12 portrait:grid-rows-12" ref={containerRef}>
@@ -76,16 +80,17 @@ export default function PlanInText({ tab, contents= "", result }) {
             landscape:col-start-2 landscape:col-span-5" ref={bottomRef}>
             {activeTab === "pddl" && (
             <div className="w-full flex flex-col place-items-center">
-                <div className="w-[95%] max-h-[320px] overflow-y-auto">
+                <Parameters params={params} setParams={setParams} options={pddlOptions} />
+                <div className="w-[95%] max-h-[250px] overflow-y-auto">
                     <textarea required className="w-full border rounded min-h-[150px]"
-                        placeholder="Goals and Contraints Info"
+                        placeholder="Domain"
                         value={pddlState.domain}
-                        onChange={(e) => setPddlState({ ...pddlState, domain: e.target.value })}
+                        onChange={(e) => { setPddlState({ ...pddlState, domain: e.target.value })}}
                     />
                     <textarea required className="w-full border rounded min-h-[150px]"
-                        placeholder="Scenario Info"
+                        placeholder="Problem"
                         value={pddlState.problem}
-                        onChange={(e) => setPddlState({ ...pddlState, problem: e.target.value })}
+                        onChange={(e) => { setPddlState({ ...pddlState, problem: e.target.value })}}
                     />
                 </div>
             </div>
@@ -93,11 +98,12 @@ export default function PlanInText({ tab, contents= "", result }) {
 
             {activeTab === "minizinc" && (
             <div className="w-full flex flex-col place-items-center">
-                <div className="w-[95%] max-h-[320px] overflow-y-auto">
-                    <textarea required className="w-full border rounded min-h-[300px]"
-                        placeholder="Scenario, Goals and Constraints Info"
+                <Parameters params={params} setParams={setParams} options={mznOptions} />
+                <div className="w-[95%] max-h-[300px] overflow-y-auto">
+                    <textarea required className="w-full border rounded min-h-[250px]"
+                        placeholder="Scenario, Goals and Constraints"
                         value={minizincState.model_str}
-                        onChange={(e) => setMinizincState({ ...minizincState, model_str: e.target.value })}
+                        onChange={(e) => { setMinizincState({ ...minizincState, model_str: e.target.value })}}
                     />
                 </div>
             </div> 
@@ -110,16 +116,24 @@ export default function PlanInText({ tab, contents= "", result }) {
                         placeholder="Under development - use with caution!
 Please describe your plan's main scenario, goals and constraints"
                         value={naturalState.content}
-                        onChange={(e) => setNaturalState({ ...naturalState, content: e.target.value })}
+                        onChange={(e) => { setNaturalState({ ...naturalState, content: e.target.value }) }}
                     />
                 </div>
             </div> 
             )}
             </div>
-            <button className="row-start-11 row-span-1 col-start-4 col-span-1
+            {!toSolve && (<button className="row-start-11 row-span-1 col-start-4 col-span-1
+            portrait:col-span-2 portrait:col-start-6 rounded" type="button"
+            onClick={() => fillContent() }>
+                Solve
+            </button>
+            )}
+            {toSolve && (<button className="row-start-11 row-span-1 col-start-4 col-span-1
             portrait:col-span-2 portrait:col-start-6 rounded"
-            onClick={() => { if (activeTab === "pddl" || activeTab === "minizinc") solve(activeTab); }}
-            type="button">Solve</button>
+            disabled type="button">
+                Solving
+            </button>
+            )}
         </section>
     );
 }

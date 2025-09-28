@@ -8,7 +8,7 @@ export default function MznPresets({ output, setOutput, type, setType }) {
   });
   const presets = [
     { name: "none", key: "none" },
-    { name: "N-Queens", key: "nqueens" },
+    { name: "Scheduling", key: "scheduling" },
   ];
   const [activePreset, setActivePreset] = useState(type);
 
@@ -46,7 +46,7 @@ export default function MznPresets({ output, setOutput, type, setType }) {
         </ul>
       </header>
 
-      {preset === "nqueens" && (
+      {preset === "scheduling" && (
         <article className="py-4 flex flex-col text-right">
             <div className="w-full flex flex-row">
                 <label className="block w-1/2">Board Size |</label>
